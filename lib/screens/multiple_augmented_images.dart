@@ -22,14 +22,14 @@ class _MultipleAugmentedImagesPageState
     DsitantImageAsset(
         id: "1",
         imageLink:
-            "https://github.com/Ahmed2000Github/spring-react/blob/modele/earth_augmented_image.jpg?raw=true",
+            "https://github.com/Said-Aabilla/ar_image_tracking/blob/assets/earth_augmented_image.jpg?raw=true",
         imageName: "earth_augmented_image",
         modelLink:
             "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf"),
     DsitantImageAsset(
         id: "2",
         imageLink:
-            "https://github.com/Ahmed2000Github/spring-react/blob/modele/earth_augmented_image.jpg?raw=true",
+            "https://github.com/Said-Aabilla/ar_image_tracking/blob/assets/prova_texture.png?raw=true",
         imageName: "prova_texture",
         modelLink:
             "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf"),
@@ -63,15 +63,6 @@ class _MultipleAugmentedImagesPageState
       bytesMap[asset.imageName] = bytes.buffer.asUint8List();
     }
 
-    // final ByteData bytes1 = await NetworkAssetBundle(Uri.parse(
-    //         'https://github.com/Ahmed2000Github/spring-react/blob/modele/earth_augmented_image.jpg?raw=true'))
-    //     .load("");
-    // final ByteData bytes2 = await rootBundle.load('assets/prova_texture.png');
-    // final ByteData bytes3 = await rootBundle.load('assets/umano_digitale.png');
-    // bytesMap["earth_augmented_image"] = bytes1.buffer.asUint8List();
-    // bytesMap["prova_texture"] = bytes2.buffer.asUint8List();
-    // bytesMap["umano_digitale"] = bytes3.buffer.asUint8List();
-
     arCoreController.loadMultipleAugmentedImage(bytesMap: bytesMap);
   }
 
@@ -87,6 +78,7 @@ class _MultipleAugmentedImagesPageState
     for (var asset in distantImages) {
       if (asset.imageName == augmentedImage.name) {
         final node = ArCoreReferenceNode(
+            scale: vector.Vector3.all(0.1),
             objectUrl:
                 'https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf');
 
@@ -96,28 +88,10 @@ class _MultipleAugmentedImagesPageState
     }
   }
 
-  // Future _addSphere(ArCoreAugmentedImage augmentedImage) async {
-  // final ByteData textureBytes = await rootBundle.load('assets/earth.jpg');
-
-  // final material = ArCoreMaterial(
-  //   color: Color.fromARGB(120, 66, 134, 244),
-  //   textureBytes: textureBytes.buffer.asUint8List(),
-  // );
-  // final sphere = ArCoreSphere(
-  //   materials: [material],
-  //   radius: augmentedImage.extentX / 2,
-  // );
-  // final node = ArCoreNode(
-  //   shape: sphere,
-  // );
-
   //  "https://github.com/Ahmed2000Github/spring-react/blob/modele/uploads_files_2894278_Robot.glb",
   //   final node = ArCoreReferenceNode(
   //       objectUrl:
   //           'https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf');
-
-  //   arCoreController.addArCoreNodeToAugmentedImage(node, augmentedImage.index);
-  // }
 
   @override
   void dispose() {
